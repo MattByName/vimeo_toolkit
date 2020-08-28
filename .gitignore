@@ -1,0 +1,6 @@
+*.json
+*.csv
+.idea
+__pycache__/
+.env
+*.jar
