@@ -67,6 +67,13 @@ def save_csv(list, fname):
         for row in list:
             writer.writerow(row)
 
+def load_csv(fname):
+    with open('{}.csv'.format(fname), 'r') as csvfile:
+        reader = csv.reader(csvfile, dialect='excel')
+        rows = [row for row in reader]
+        return rows
+
+
 def get_vids_csv():
     vid_list = get_list_of_all_videos()
     save_csv(vid_list,'videos')
@@ -75,9 +82,32 @@ def get_vids_csv():
 def start():
     print("Started")
 
+def get_list_of_vid_ids():
+    vids = load_csv('videos')
+    id_list = [row[0] for row in vids]
+    return id_list
+
+def build_embeded_html_files():
+    id_list = get_list_of_vid_ids()
+
+    template = """
+    <html>
+    <body bgcolor="black">
+        <iframe src="https://player.vimeo.com/video/{}" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </body>
+    
+</html>
+    """
+    for id in id_list:
+        with open('html/'+id+'.html','w') as f:
+            f.write(template.format(id))
+
+
+
 def init_funcs():
     funcs = {
         "--get-vids-csv": get_vids_csv,
+        "--build-html": build_embeded_html_files,
     }
     return funcs
 

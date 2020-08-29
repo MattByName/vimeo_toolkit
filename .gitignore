@@ -4,3 +4,6 @@
 __pycache__/
 .env
 *.jar
+html/*
+html
+*.html

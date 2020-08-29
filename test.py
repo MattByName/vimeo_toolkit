@@ -2,9 +2,9 @@ import unittest
 import vimeo
 from decouple import config
 import json
-from base import get_list_of_all_videos, get_total_pages_from_data
+from base import get_list_of_all_videos, get_total_pages_from_data, get_list_of_vid_ids
 
-TOTAL_VIDEOS=59
+TOTAL_VIDEOS=65
 TOKEN = config('VIMEO_TOKEN')
 CLIENT_ID = config('VIMEO_CLIENT_ID')
 SECRET = config('VIMEO_SECRET')
@@ -49,6 +49,19 @@ class VimeoApiTest(unittest.TestCase):
         total_videos = int(json_response['total'])
 
         self.assertEqual(total_videos,len(get_list_of_all_videos()))
+
+    def test_get_list_list_of_ids_gets_right_number(self):
+        client = vimeo.VimeoClient(
+            token='{}'.format(TOKEN),
+            key='{}'.format(CLIENT_ID),
+            secret='{}'.format(SECRET),
+        )
+        uri = 'https://api.vimeo.com/users/{}/videos'.format(USER)
+        response = client.get(uri)
+        json_response = response.json()
+        total_videos = int(json_response['total'])
+
+        self.assertEqual(total_videos,len(get_list_of_vid_ids()))
 
     def test_get_total_pages_gets_accurate_pages(self):
         test_total_pages = 3
