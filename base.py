@@ -56,7 +56,7 @@ def get_list_of_all_videos(fields=None):
     for js in json_data_set:
         for jrow in js:
 
-            rows.append([jrow['uri'],jrow['name'],jrow['description']])
+            rows.append([jrow['uri'].lstrip('/videos/'),jrow['name'],jrow['description']])
 
     return rows
 
