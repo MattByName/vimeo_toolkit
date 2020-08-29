@@ -1,5 +1,5 @@
 # Vimeo Toolkit
-__Version__ Alpha 1
+
 
 
 ## Overview
