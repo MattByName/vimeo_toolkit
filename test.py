@@ -4,7 +4,7 @@ from decouple import config
 import json
 from base import get_list_of_all_videos, get_total_pages_from_data, get_list_of_vid_ids
 
-TOTAL_VIDEOS=65
+TOTAL_VIDEOS=65 #required for tests to work, you'll need to manually enter how many videos you have.
 TOKEN = config('VIMEO_TOKEN')
 CLIENT_ID = config('VIMEO_CLIENT_ID')
 SECRET = config('VIMEO_SECRET')

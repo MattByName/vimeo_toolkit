@@ -9,11 +9,7 @@ TOKEN = config('VIMEO_TOKEN')
 CLIENT_ID = config('VIMEO_CLIENT_ID')
 SECRET = config('VIMEO_SECRET')
 USER = config('VIMEO_USER', cast=int)
-
-
-def put_video():
-    pass
-
+DOMAIN = config('DOMAIN')
 
 def set_privacy_and_embed():
     print('Updating privacy settings for all cached videos')
@@ -38,7 +34,7 @@ def set_privacy_and_embed():
 
 
 def add_whitelist_domain():
-    DOMAIN = 'videos.britishphenomenology.org.uk'
+
 
     print('Adding domain to whitelist ({})'.format(DOMAIN))
     for id in get_list_of_vid_ids():
